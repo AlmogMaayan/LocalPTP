@@ -1,0 +1,35 @@
+{
+  "name": "localcoder",
+  "version": "0.1.0",
+  "description": "LocalCode Orchestrator CLI — drives a local coding model over large codebases.",
+  "type": "module",
+  "bin": {
+    "localcoder": "dist/cli.js"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "test": "vitest run",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "lint": "echo \"lint placeholder — no linter configured yet\"",
+    "localcoder": "tsx src/cli.ts"
+  },
+  "dependencies": {
+    "commander": "^12.1.0",
+    "diff": "^5.2.0",
+    "execa": "^9.3.0",
+    "js-yaml": "^4.1.0",
+    "simple-git": "^3.25.0",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@types/diff": "^5.2.1",
+    "@types/js-yaml": "^4.0.9",
+    "@types/node": "^20.14.0",
+    "tsx": "^4.16.0",
+    "typescript": "^5.5.0",
+    "vitest": "^2.0.0"
+  }
+}

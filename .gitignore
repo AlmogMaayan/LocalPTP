@@ -1,0 +1,17 @@
+# localcoder
+.ai-orchestrator/logs/
+.ai-orchestrator/context-packages/
+
+# build artifacts & dependencies
+node_modules/
+dist/
+
+# docs & specs
+.docs/
+openspec/
+
+# agent tooling
+.claude/
+.cline/
+.clinerules/
+.codex/

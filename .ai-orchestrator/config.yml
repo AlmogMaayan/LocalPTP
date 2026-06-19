@@ -1,0 +1,40 @@
+model:
+  provider: lmstudio
+  base_url: http://localhost:1234/v1
+  model: qwen/qwen3.6-27b
+  api_key: lm-studio
+  temperature: 0.2
+  max_context_tokens: 32768
+  timeout_ms: 60000
+context:
+  max_context_chars: 120000
+  max_files_per_step: 12
+  max_edit_files_per_step: 5
+  max_file_chars: 50000
+  include_tests: true
+  include_import_neighbors: true
+safety:
+  require_approval: true
+  max_failed_fix_attempts: 2
+  max_changed_files_per_step: 5
+  risky_paths:
+    - '**/auth/**'
+    - '**/billing/**'
+    - '**/payments/**'
+    - '**/migrations/**'
+    - .env*
+commands:
+  typecheck: npm run typecheck
+  lint: npm run lint
+  test: npm test
+  build: npm run build
+ignore:
+  - node_modules
+  - .git
+  - .next
+  - dist
+  - build
+  - coverage
+  - package-lock.json
+  - pnpm-lock.yaml
+  - yarn.lock
