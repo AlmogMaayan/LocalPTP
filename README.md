@@ -23,6 +23,21 @@ Everything runs against a model on your own machine. No code leaves your compute
 
 ## Installation
 
+### Install from npm (recommended)
+
+```bash
+npm install -g localptp
+localptp <command>
+```
+
+### Try it without installing
+
+```bash
+npx localptp <command>
+```
+
+### Clone and build (for contributors)
+
 ```bash
 # 1. Clone
 git clone https://github.com/AlmogMaayan/LocalPTP.git
@@ -35,7 +50,7 @@ npm install
 npm run build
 ```
 
-### Run it
+#### Run it (contributor workflow)
 
 During development (no build step, runs the TypeScript directly):
 
