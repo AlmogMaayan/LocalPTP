@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "description": "LocalCode Orchestrator CLI — drives a local coding model over large codebases.",
   "type": "module",
+  "files": [
+    "dist"
+  ],
   "bin": {
     "localptp": "dist/cli.js",
     "localcoder": "dist/cli.js"
@@ -12,11 +15,15 @@
   },
   "scripts": {
     "build": "tsc -p tsconfig.json",
+    "prepublishOnly": "npm run build",
     "test": "vitest run",
     "typecheck": "tsc -p tsconfig.json --noEmit",
     "lint": "echo \"lint placeholder — no linter configured yet\"",
     "localptp": "tsx src/cli.ts",
     "localcoder": "tsx src/cli.ts"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "dependencies": {
     "commander": "^12.1.0",

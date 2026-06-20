@@ -9,6 +9,9 @@
 import { Command } from "commander";
 import { pathToFileURL, fileURLToPath } from "node:url";
 import { realpathSync } from "node:fs";
+import { createRequire } from "node:module";
+const _require = createRequire(import.meta.url);
+const { version: PKG_VERSION } = _require("../package.json") as { version: string };
 import { runInit, formatInitReport } from "./commands/init.js";
 import { runConfig, formatConfigResult } from "./commands/config.js";
 import { runDoctor, formatDoctorResult } from "./commands/doctor.js";
@@ -62,6 +65,7 @@ export function buildProgram(): Command {
   program
     .name("localptp")
     .description("LocalCode Orchestrator — drive a local coding model over a codebase.")
+    .version(PKG_VERSION, "-V, --version", "output the version number")
     .option("--json", "emit structured output as JSON")
     .option("--debug", "raise log verbosity")
     .enablePositionalOptions();
