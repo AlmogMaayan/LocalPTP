@@ -1,5 +1,5 @@
 /**
- * `localcoder doctor` (HLD-SRD §3.8, §12, §15 Test 3).
+ * `localptp doctor` (HLD-SRD §3.8, §12, §15 Test 3).
  *
  * Load+validate config → `health()` (GET /models) → `complete()` with a tiny
  * prompt → assert non-empty → return reachable + latency. Transport/protocol

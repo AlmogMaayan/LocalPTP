@@ -1,5 +1,5 @@
 /**
- * `localcoder task "<text>"` (HLD-SRD §3.5, §3.6; CLI.md).
+ * `localptp task "<text>"` (HLD-SRD §3.5, §3.6; CLI.md).
  *
  * Pure filesystem operation (no model call): create the §3.5 task file + §3.6
  * session file, write the active pointer, and report the created paths +
@@ -42,7 +42,7 @@ export async function runTask(opts: TaskOptions): Promise<TaskResult> {
   const text = opts.text.trim();
   if (text.length === 0) {
     throw new CommandError(
-      'Provide a task description, e.g. localcoder task "Add severity levels to alerts".',
+      'Provide a task description, e.g. localptp task "Add severity levels to alerts".',
     );
   }
 

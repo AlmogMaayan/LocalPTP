@@ -1,5 +1,5 @@
 /**
- * `localcoder resume` (HLD-SRD §3.6; CLI.md).
+ * `localptp resume` (HLD-SRD §3.6; CLI.md).
  *
  * Pure filesystem operation (no model call). Lists sessions newest-first with
  * status + Next-Step preview, selects one (a 1-based index arg, else a stdin
@@ -59,7 +59,7 @@ export async function runResume(opts: ResumeOptions): Promise<ResumeResult> {
     }
     if (index === undefined) {
       throw new CommandError(
-        `Specify a session index 1–${sessions.length}, e.g. \`localcoder resume 1\`.`,
+        `Specify a session index 1–${sessions.length}, e.g. \`localptp resume 1\`.`,
       );
     }
   }
@@ -92,7 +92,7 @@ function nextPreview(session: Session): string {
 
 export function formatResumeResult(result: ResumeResult): string {
   if (result.sessions.length === 0) {
-    return 'No sessions yet. Create a task with `localcoder task "…"`.';
+    return 'No sessions yet. Create a task with `localptp task "…"`.';
   }
   const lines: string[] = [];
   result.sessions.forEach((s, i) => {

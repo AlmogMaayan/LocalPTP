@@ -14,6 +14,17 @@ function captureProgram() {
 }
 
 describe("CLI command surface", () => {
+  it("7.1 program name is localptp (usage line)", async () => {
+    const { program, getOut } = captureProgram();
+    try {
+      await program.parseAsync(["node", "localptp", "--help"]);
+    } catch {
+      // commander throws on --help under exitOverride
+    }
+    const help = getOut();
+    expect(help).toMatch(/Usage:\s+localptp\b/);
+  });
+
   it("7.1 --help lists all 12 commands", async () => {
     const { program, getOut } = captureProgram();
     try {

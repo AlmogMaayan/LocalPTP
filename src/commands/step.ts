@@ -1,5 +1,5 @@
 /**
- * `localcoder step` (HLD-SRD §3.10, §3.11, §3.13, §10.2, §11, §12.3, §13).
+ * `localptp step` (HLD-SRD §3.10, §3.11, §3.13, §10.2, §11, §12.3, §13).
  *
  * A thin wrapper over the shared `runStep` core (`src/core/runStep.ts`): it runs
  * ONE pending subtask end-to-end through the core state machine, then adapts the

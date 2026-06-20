@@ -1,5 +1,5 @@
 /**
- * `localcoder summarize` (HLD-SRD §3.4, §3.9, §12, §13; CLI.md; 0001_07).
+ * `localptp summarize` (HLD-SRD §3.4, §3.9, §12, §13; CLI.md; 0001_07).
  *
  * Closes the daily loop by folding finished work into durable `/ai` memory.
  *
@@ -177,13 +177,13 @@ export async function runSummarize(opts: SummarizeOptions): Promise<SummarizeRes
   const active = await resolveActive(l.orchestratorDir);
   if (active.kind === "none") {
     throw new CommandError(
-      'No active session. Create or resume a task first with `localcoder task "…"` or `localcoder resume`.',
+      'No active session. Create or resume a task first with `localptp task "…"` or `localptp resume`.',
     );
   }
   if (active.kind === "missing-target") {
     throw new CommandError(
       `The active pointer references a missing file: ${active.missing.join(", ")}. ` +
-        "Create a new task with `localcoder task \"…\"` or pick another with `localcoder resume`.",
+        "Create a new task with `localptp task \"…\"` or pick another with `localptp resume`.",
     );
   }
   const { taskPath, sessionPath } = active.pointer;

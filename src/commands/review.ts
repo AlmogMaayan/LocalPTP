@@ -1,5 +1,5 @@
 /**
- * `localcoder review` (HLD-SRD §3.12; 0001_06).
+ * `localptp review` (HLD-SRD §3.12; 0001_06).
  *
  * Advisory diff review: build a reviewer context over the current Git diff, ask
  * the model to review it, tolerantly parse the structured report (summary /

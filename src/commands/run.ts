@@ -1,5 +1,5 @@
 /**
- * `localcoder run` (HLD-SRD §3.13, §11.2; 0001_06).
+ * `localptp run` (HLD-SRD §3.13, §11.2; 0001_06).
  *
  * Automates the daily loop: it drives the shared `runStep` core over the active
  * task's pending subtasks via the `runLoop` driver, pausing for approval at each
@@ -52,13 +52,13 @@ export async function run(opts: RunOptions): Promise<RunResult> {
   const active = await resolveActive(l.orchestratorDir);
   if (active.kind === "none") {
     throw new CommandError(
-      'No active task. Create one first with `localcoder task "…"`.',
+      'No active task. Create one first with `localptp task "…"`.',
     );
   }
   if (active.kind === "missing-target") {
     throw new CommandError(
       `The active pointer references a missing file: ${active.missing.join(", ")}. ` +
-        'Create a new task with `localcoder task "…"` or pick another with `localcoder resume`.',
+        'Create a new task with `localptp task "…"` or pick another with `localptp resume`.',
     );
   }
 
@@ -92,7 +92,7 @@ export function formatRunResult(result: RunResult): string {
     `Applied ${result.applied} patch(es) over ${result.iterations} step(s).`,
   ];
   if (result.stopReason === "acceptance-met") {
-    lines.push("Recommend: `localcoder summarize` (0001_07) to close the session.");
+    lines.push("Recommend: `localptp summarize` (0001_07) to close the session.");
   }
   return lines.join("\n");
 }

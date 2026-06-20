@@ -284,7 +284,7 @@ export function selectFiles(inputs: ContextInputs): Selection {
       .map((f) => toPosix(f.path));
     sourceFiles = sample;
     warnings.push(
-      "No active task — showing a budget-capped preview. Run `localcoder task \"…\"` to scope context.",
+      "No active task — showing a budget-capped preview. Run `localptp task \"…\"` to scope context.",
     );
     if (index.files.length === 0) {
       warnings.push("No source files indexed.");

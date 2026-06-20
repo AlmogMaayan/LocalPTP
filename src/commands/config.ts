@@ -1,5 +1,5 @@
 /**
- * `localcoder config` (HLD-SRD §3.2).
+ * `localptp config` (HLD-SRD §3.2).
  *
  * - `config`            → show the full merged config (api_key redacted).
  * - `config <subtree>`  → show that sub-tree (e.g. `config model`).

@@ -1,5 +1,5 @@
 /**
- * `localcoder context` (HLD-SRD §3.7, §9, §15 Test 5; CLI.md).
+ * `localptp context` (HLD-SRD §3.7, §9, §15 Test 5; CLI.md).
  *
  * Read-only preview of the context package the Context Builder would assemble
  * for a role. Makes NO model call. Workflow:
@@ -114,7 +114,7 @@ export async function runContext(opts: ContextOptions): Promise<ContextResult> {
   const rawIndex = await readIfExists(indexPath);
   if (rawIndex === undefined) {
     throw new CommandError(
-      "No repository index found. Run `localcoder index` first.",
+      "No repository index found. Run `localptp index` first.",
     );
   }
   let index: RepoIndex;
@@ -122,14 +122,14 @@ export async function runContext(opts: ContextOptions): Promise<ContextResult> {
     const parsed = repoIndexSchema.safeParse(JSON.parse(rawIndex));
     if (!parsed.success) {
       throw new CommandError(
-        "The repository index is malformed. Re-run `localcoder index`.",
+        "The repository index is malformed. Re-run `localptp index`.",
       );
     }
     index = parsed.data;
   } catch (err) {
     if (err instanceof CommandError) throw err;
     throw new CommandError(
-      "The repository index could not be read as JSON. Re-run `localcoder index`.",
+      "The repository index could not be read as JSON. Re-run `localptp index`.",
     );
   }
 
@@ -166,7 +166,7 @@ export async function runContext(opts: ContextOptions): Promise<ContextResult> {
     try {
       fileContents[rel] = await fs.readFile(full, "utf8");
     } catch {
-      preWarnings.push(`Indexed file missing: ${rel}; re-run \`localcoder index\`.`);
+      preWarnings.push(`Indexed file missing: ${rel}; re-run \`localptp index\`.`);
     }
   }
 
