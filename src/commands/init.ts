@@ -1,5 +1,5 @@
 /**
- * `localcoder init` (HLD-SRD §3.4, §15 Test 1).
+ * `localptp init` (HLD-SRD §3.4, §15 Test 1).
  *
  * Detect repo root (warn, don't fail, if no `.git`) → ensure dirs → Memory
  * scaffold (write-if-absent) → write default config if absent → append the
@@ -31,7 +31,7 @@ export async function runInit(opts: InitOptions): Promise<InitReport> {
   const git = await detectGitRoot(opts.cwd);
   if (!git.isRepo) {
     warnings.push(
-      "This directory is not a Git repository. localcoder will still scaffold, " +
+      "This directory is not a Git repository. localptp will still scaffold, " +
         "but Git-dependent safety features require a repo.",
     );
   }
@@ -57,7 +57,7 @@ export function formatInitReport(report: InitReport): string {
   for (const w of report.warnings) {
     lines.push(`warning: ${w}`);
   }
-  lines.push(`Scaffolded localcoder memory at ${report.root}`);
+  lines.push(`Scaffolded localptp memory at ${report.root}`);
   lines.push(
     `  memory files: ${report.memory.created.length} created, ${report.memory.preserved.length} preserved`,
   );

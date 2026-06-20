@@ -40,7 +40,7 @@ npm run build
 During development (no build step, runs the TypeScript directly):
 
 ```bash
-npm run localcoder -- <command>
+npm run localptp -- <command>
 ```
 
 After building, run the compiled CLI:
@@ -49,12 +49,14 @@ After building, run the compiled CLI:
 node dist/cli.js <command>
 ```
 
-Or install it globally so `localcoder` is on your `PATH`:
+Or install it globally so `localptp` is on your `PATH`:
 
 ```bash
 npm install -g .
-localcoder <command>
+localptp <command>
 ```
+
+> **Deprecated alias:** The `localcoder` binary resolves to the same CLI for one release and will be removed thereafter. Please update any scripts to use `localptp`.
 
 ## Quick start
 
@@ -62,27 +64,27 @@ localcoder <command>
 # 0. Start LM Studio, load qwen/qwen3.6-27b, and start its local server.
 
 # 1. Scaffold /ai memory + .ai-orchestrator/config.yml (idempotent)
-localcoder init
+localptp init
 
 # 2. Verify LM Studio is reachable and the model responds
-localcoder doctor
+localptp doctor
 
 # 3. Index the repo
-localcoder index
+localptp index
 
 # 4. Create a task
-localcoder task "add input validation to the signup form"
+localptp task "add input validation to the signup form"
 
 # 5. Plan it into subtasks (calls the model)
-localcoder plan
+localptp plan
 
 # 6. Execute — one subtask, or loop until a stop condition
-localcoder step
-localcoder run
+localptp step
+localptp run
 
 # 7. Review the diff and summarize the session
-localcoder review
-localcoder summarize
+localptp review
+localptp summarize
 ```
 
 ## Commands
@@ -106,7 +108,7 @@ localcoder summarize
 
 ## Configuration
 
-`localcoder init` writes `.ai-orchestrator/config.yml`. Sensible defaults apply when a field is absent. Key model settings:
+`localptp init` writes `.ai-orchestrator/config.yml`. Sensible defaults apply when a field is absent. Key model settings:
 
 ```yaml
 model:
@@ -122,12 +124,12 @@ model:
 Read or change values from the CLI:
 
 ```bash
-localcoder config model.model              # show current model
-localcoder config model.model qwen/qwen3.6-27b   # set the model
-localcoder config model.baseUrl            # show the LM Studio endpoint
+localptp config model.model              # show current model
+localptp config model.model qwen/qwen3.6-27b   # set the model
+localptp config model.baseUrl            # show the LM Studio endpoint
 ```
 
-Safety, context, and command settings (typecheck/lint/test/build) are also configurable — run `localcoder config` to see the full merged tree.
+Safety, context, and command settings (typecheck/lint/test/build) are also configurable — run `localptp config` to see the full merged tree.
 
 ## Development
 
@@ -140,4 +142,3 @@ npm test            # run the vitest suite
 ## License
 
 [MIT](./LICENSE) © 2026 Maayan Almog
-</content>

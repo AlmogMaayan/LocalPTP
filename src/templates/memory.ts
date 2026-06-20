@@ -29,7 +29,7 @@ export const MEMORY_TEMPLATES: MemoryTemplate[] = [
   tpl(
     "repo-map.md",
     "Repo Map",
-    "High-level map of the repository's top-level directories and their responsibilities.\n\n_(Generated/updated by `localcoder index`.)_",
+    "High-level map of the repository's top-level directories and their responsibilities.\n\n_(Generated/updated by `localptp index`.)_",
   ),
   tpl(
     "architecture.md",
@@ -79,7 +79,7 @@ export const MEMORY_TEMPLATES: MemoryTemplate[] = [
   tpl(
     "local-model-workflow.md",
     "Local Model Workflow",
-    "How to drive the local coding model over this repo with `localcoder` (init → index → task → plan → step → review → summarize).",
+    "How to drive the local coding model over this repo with `localptp` (init → index → task → plan → step → review → summarize).",
   ),
   tpl(
     "task-template.md",

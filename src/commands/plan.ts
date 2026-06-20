@@ -1,5 +1,5 @@
 /**
- * `localcoder plan` (HLD-SRD §3.9, §11.2, §12; CLI.md).
+ * `localptp plan` (HLD-SRD §3.9, §11.2, §12; CLI.md).
  *
  * The first command that calls the model for real work. Flow (writes happen
  * ONLY after a valid plan exists, so a model/parse failure saves nothing):
@@ -115,13 +115,13 @@ export async function runPlan(opts: PlanOptions): Promise<PlanResult> {
   const active = await resolveActive(l.orchestratorDir);
   if (active.kind === "none") {
     throw new CommandError(
-      'No active task. Create one first with `localcoder task "…"`.',
+      'No active task. Create one first with `localptp task "…"`.',
     );
   }
   if (active.kind === "missing-target") {
     throw new CommandError(
       `The active pointer references a missing file: ${active.missing.join(", ")}. ` +
-        "Create a new task with `localcoder task \"…\"` or pick another with `localcoder resume`.",
+        "Create a new task with `localptp task \"…\"` or pick another with `localptp resume`.",
     );
   }
   const { taskPath, sessionPath } = active.pointer;
@@ -163,7 +163,7 @@ export async function runPlan(opts: PlanOptions): Promise<PlanResult> {
     if (err instanceof UnparseablePlanError) {
       throw new CommandError(
         "The model output could not be parsed into a valid plan. Nothing was saved. " +
-          "Try `localcoder plan` again or narrow the task.",
+          "Try `localptp plan` again or narrow the task.",
       );
     }
     throw err;

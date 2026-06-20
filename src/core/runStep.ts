@@ -447,13 +447,13 @@ export async function runStep(deps: StepDeps): Promise<StepCoreResult> {
   const active = await resolveActive(l.orchestratorDir);
   if (active.kind === "none") {
     throw new CommandError(
-      'No active task. Create one first with `localcoder task "…"`.',
+      'No active task. Create one first with `localptp task "…"`.',
     );
   }
   if (active.kind === "missing-target") {
     throw new CommandError(
       `The active pointer references a missing file: ${active.missing.join(", ")}. ` +
-        'Create a new task with `localcoder task "…"` or pick another with `localcoder resume`.',
+        'Create a new task with `localptp task "…"` or pick another with `localptp resume`.',
     );
   }
   const { taskPath, sessionPath } = active.pointer;
@@ -466,7 +466,7 @@ export async function runStep(deps: StepDeps): Promise<StepCoreResult> {
   const subtask = task.subtasks.find((s) => s.status === "pending");
   if (subtask === undefined) {
     process.stdout.write(
-      "No pending subtasks — the task has nothing left to do. Run `localcoder plan` to add more.\n",
+      "No pending subtasks — the task has nothing left to do. Run `localptp plan` to add more.\n",
     );
     return {
       subtaskId: null,
@@ -529,7 +529,7 @@ export async function runStep(deps: StepDeps): Promise<StepCoreResult> {
   if (diff === null) {
     throw new CommandError(
       "The model did not return a valid unified diff (§12.3). Nothing was applied. " +
-        "Try `localcoder step` again or narrow the subtask.",
+        "Try `localptp step` again or narrow the subtask.",
     );
   }
 
@@ -710,7 +710,7 @@ async function recordOutcome(o: OutcomeInputs): Promise<void> {
   );
   const nextStep = next
     ? `${next.id}: ${next.title}`
-    : "All subtasks complete. Run `localcoder summarize` (0001_07) or close the task.";
+    : "All subtasks complete. Run `localptp summarize` (0001_07) or close the task.";
 
   const currentState =
     `Applied ${o.subtask.id} (${o.subtask.title}).\n\n` +

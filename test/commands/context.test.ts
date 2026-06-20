@@ -1,5 +1,5 @@
 /**
- * Integration tests for `localcoder context` (tasks 6.1–6.4).
+ * Integration tests for `localptp context` (tasks 6.1–6.4).
  */
 import { describe, it, expect, beforeEach, afterEach } from "vitest";
 import { promises as fs } from "node:fs";
@@ -83,7 +83,7 @@ describe("runContext missing index (6.2)", () => {
       err = e;
     }
     expect(err).toBeInstanceOf(Error);
-    expect((err as Error).message).toMatch(/localcoder index/);
+    expect((err as Error).message).toMatch(/localptp index/);
     expect((err as { exitCode?: number }).exitCode).toBe(1);
   });
 });

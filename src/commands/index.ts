@@ -1,5 +1,5 @@
 /**
- * `localcoder index` (HLD-SRD §3.3, §5, §9).
+ * `localptp index` (HLD-SRD §3.3, §5, §9).
  *
  * Offline filesystem scan: no model call, no stdin. Workflow:
  *   1. Detect repo root (warn when non-git).
@@ -46,7 +46,7 @@ export async function runIndex(opts: IndexOptions): Promise<IndexResult> {
   // 1. Detect root
   const git = await detectGitRoot(cwd);
   if (!git.isRepo) {
-    warn("This directory is not a Git repository. localcoder index will use config + baseline ignore only.");
+    warn("This directory is not a Git repository. localptp index will use config + baseline ignore only.");
   }
   const root = git.root ?? cwd;
   const l = layout(root);

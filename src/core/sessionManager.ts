@@ -161,7 +161,7 @@ function renderSessionFile(task: Task, now: Date): string {
     "- Not run yet",
     "",
     "## Next Step",
-    "Run `localcoder plan` to decompose the task.",
+    "Run `localptp plan` to decompose the task.",
     "",
   ].join("\n");
 }

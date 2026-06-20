@@ -108,7 +108,7 @@ export async function runLoop(deps: RunLoopDeps): Promise<RunLoopResult> {
       if (reason === "acceptance-met") {
         print("Acceptance criteria met — no pending subtasks remain.\n");
         print(
-          "Recommend: run `localcoder summarize` (0001_07) to close the session.\n",
+          "Recommend: run `localptp summarize` (0001_07) to close the session.\n",
         );
       } else {
         print(`Stopping run — ${reason}\n`);

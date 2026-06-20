@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * `localcoder` CLI entry (HLD-SRD §3.1, §8).
+ * `localptp` CLI entry (HLD-SRD §3.1, §8).
  *
  * Registers the full MVP command surface: `init`, `config`, `doctor` are live;
  * the remaining nine are stubs that print "not implemented yet (slice 000X)"
@@ -23,9 +23,27 @@ import { runReview, formatReviewResult } from "./commands/review.js";
 import { runSummarize, formatSummarizeResult } from "./commands/summarize.js";
 import { ModelClientError } from "./types/model.js";
 import { redactSecrets } from "./utils/logger.js";
+import { startRepl } from "./repl/loop.js";
 
 /** Deferred commands and the slice that will implement each. */
 export const STUB_COMMANDS: Record<string, string> = {};
+
+/**
+ * Returns `true` iff this is a bare TTY invocation that should start the REPL:
+ * - strip `--json` and `--debug` from `argv.slice(2)`
+ * - if NO tokens remain AND `process.stdin.isTTY === true` AND `--json` is absent
+ *
+ * Any remaining token (sub-command, unknown positional, `--help`, `--version`,
+ * `--`) counts as "not bare" and falls through to Commander.
+ *
+ * `program` is accepted for API symmetry (future name-aware checks) but unused.
+ */
+export function shouldStartRepl(_program: Command, argv: string[]): boolean {
+  const hasJson = argv.includes("--json");
+  if (hasJson) return false;
+  const rest = argv.slice(2).filter((a) => a !== "--json" && a !== "--debug");
+  return rest.length === 0 && process.stdin.isTTY === true;
+}
 
 interface GlobalOpts {
   json?: boolean;
@@ -42,7 +60,7 @@ function globalOpts(command: Command): GlobalOpts {
 export function buildProgram(): Command {
   const program = new Command();
   program
-    .name("localcoder")
+    .name("localptp")
     .description("LocalCode Orchestrator — drive a local coding model over a codebase.")
     .option("--json", "emit structured output as JSON")
     .option("--debug", "raise log verbosity")
@@ -340,6 +358,9 @@ function reportError(err: unknown): number {
 
 export async function main(argv: string[]): Promise<number> {
   const program = buildProgram();
+  if (shouldStartRepl(program, argv)) {
+    return await startRepl({ cwd: process.cwd() });
+  }
   program.exitOverride();
   try {
     await program.parseAsync(argv);
@@ -360,7 +381,7 @@ export async function main(argv: string[]): Promise<number> {
 
 // Only run when invoked directly (not when imported by tests). Compare RESOLVED
 // real paths: when installed via the npm `bin`, `process.argv[1]` is a symlink
-// (e.g. node_modules/.bin/localcoder) while `import.meta.url` is realpath-
+// (e.g. node_modules/.bin/localptp) while `import.meta.url` is realpath-
 // resolved — a raw string compare would miss and the CLI would silently no-op.
 // Falls back to the unresolved compare if realpath fails (e.g. file removed).
 function isDirectRun(): boolean {
